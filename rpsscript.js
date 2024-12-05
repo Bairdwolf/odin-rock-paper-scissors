@@ -1,7 +1,6 @@
 function getComputerChoice(){
     let choice=Math.floor(Math.random()*3);
     //choses number from 0, 1, or 2 randomly
-    console.log(choice);
     if (choice == 0){
         return "rock";
     }
@@ -31,10 +30,11 @@ function getHumanChoice(){
         return "error";
     }
 }
-//Initial scores set to 0
-let humanScore=0;
-let computerScore=0;
-function playRound(humanChoice, computerChoice){
+function playGame(){
+    //Initial scores set to 0
+    let humanScore=0;
+    let computerScore=0;
+    function playRound(humanChoice, computerChoice){
     //all options where player picked rock
     //added result declaration to fix bug
     let result="";
@@ -86,8 +86,18 @@ function playRound(humanChoice, computerChoice){
     else{
         console.log(`Tie!`)
     }
+    }
+    //set human and computer selection as empty strings
+    let humanSelection="";
+    let computerSelection="";
+    //plays for 5 rounds
+    for (let roundCount=1; roundCount<=5; roundCount++){
+        //sets new choices by calling functions again
+        humanSelection=getHumanChoice();
+        computerSelection=getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+    //shows end score
+    console.log(`Your score was ${humanScore} and your opponenent's score was ${computerScore}`);
 }
-//temporarily set const for one round of play
-const humanSelection=getHumanChoice();
-const computerSelection=getComputerChoice();
-playRound(humanSelection, computerSelection);
+playGame();
