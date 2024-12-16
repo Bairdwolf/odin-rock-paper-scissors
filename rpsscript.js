@@ -90,14 +90,24 @@ function playGame(){
     //set human and computer selection as empty strings
     let humanSelection="";
     let computerSelection="";
-    //plays for 5 rounds
-    for (let roundCount=1; roundCount<=5; roundCount++){
-        //sets new choices by calling functions again
-        humanSelection=getHumanChoice();
-        computerSelection=getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    //plays for 5 rounds, disable for now
+    // for (let roundCount=1; roundCount<=5; roundCount++){
+    //     //sets new choices by calling functions again
+    //     humanSelection=getHumanChoice();
+    //     computerSelection=getComputerChoice();
+    //     playRound(humanSelection, computerSelection);
+    // }
     //shows end score
-    console.log(`Your score was ${humanScore} and your opponenent's score was ${computerScore}`);
+    
+    const buttons=document.querySelectorAll("button");
+    //Selects all buttons to allow for play using buttons instead of input
+    buttons.forEach((button)=>{
+        //Add click event listener for each button that plays a round
+        button.addEventListener("click", ()=>{
+            playRound(button.id, getComputerChoice());
+        });
+    });
+    //Disable scorekeeping for now
+    //console.log(`Your score was ${humanScore} and your opponenent's score was ${computerScore}`);
 }
 playGame();
