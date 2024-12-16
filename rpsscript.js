@@ -34,6 +34,11 @@ function playGame(){
     //Initial scores set to 0
     let humanScore=0;
     let computerScore=0;
+
+    //setup text display and scoreboard
+    const display=document.querySelector("div");
+    const scoreBoard=document.querySelector(".scoreboard");
+
     function playRound(humanChoice, computerChoice){
     //all options where player picked rock
     //added result declaration to fix bug
@@ -74,30 +79,29 @@ function playGame(){
         }
     }
 
-    //Different outputs to console depending on who won. also increment score count.
+    //Different outputs to display depending on who won. also increment score count for variable
     if (result==="win"){
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`)
+        const newRound=document.createElement("p");
+        newRound.textContent=`You win! ${humanChoice} beats ${computerChoice}!`;
+        display.appendChild(newRound);
         humanScore++;
     }
     else if (result==="lose"){
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`)
+        const newRound=document.createElement("p");
+        newRound.textContent=`You lose! ${computerChoice} beats ${humanChoice}!`;
+        display.appendChild(newRound);
         computerScore++;
     }
     else{
-        console.log(`Tie!`)
+        const newRound=document.createElement("p");
+        newRound.textContent=`Tie!`;
+        display.appendChild(newRound);
     }
+    //update scoreboard.
+    scoreBoard.textContent=`Score: Human ${humanScore} Computer ${computerScore}`;
+
     }
-    //set human and computer selection as empty strings
-    let humanSelection="";
-    let computerSelection="";
-    //plays for 5 rounds, disable for now
-    // for (let roundCount=1; roundCount<=5; roundCount++){
-    //     //sets new choices by calling functions again
-    //     humanSelection=getHumanChoice();
-    //     computerSelection=getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-    //shows end score
+    
     
     const buttons=document.querySelectorAll("button");
     //Selects all buttons to allow for play using buttons instead of input
