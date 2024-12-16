@@ -39,6 +39,9 @@ function playGame(){
     const display=document.querySelector("div");
     const scoreBoard=document.querySelector(".scoreboard");
 
+    //determines if someone has won yet
+    let winner="";
+
     function playRound(humanChoice, computerChoice){
     //all options where player picked rock
     //added result declaration to fix bug
@@ -99,6 +102,20 @@ function playGame(){
     }
     //update scoreboard.
     scoreBoard.textContent=`Score: Human ${humanScore} Computer ${computerScore}`;
+
+    //if someone won, insert that at top of screen and the winner is set in stone
+    if (humanScore==5 && winner===""){
+        winner="human";
+        const winnerDisplay=document.createElement("p");
+        winnerDisplay.textContent="Winner: Human";
+        display.insertBefore(winnerDisplay, scoreBoard);
+    }
+    else if (computerScore==5 && winner===""){
+        winner="computer";
+        const winnerDisplay=document.createElement("p");
+        winnerDisplay.textContent="Winner:Computer";
+        display.insertBefore(winnerDisplay, scoreBoard);
+    }
 
     }
     
